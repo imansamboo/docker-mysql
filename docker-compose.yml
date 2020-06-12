@@ -1,0 +1,47 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  db1:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 4005:3306
+    volumes:
+      - /home/iman/Documents/projects/docker training/docker-mysql/server1/custom.cnf:/etc/mysql/conf.d/custom.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    expose:
+      - 3306
+  db2:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 4006:3306
+    volumes:
+      - /home/iman/Documents/projects/docker training/docker-mysql/server2/custom.cnf:/etc/mysql/conf.d/custom.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    expose:
+      - 3306
+  db3:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 4007:3306
+    volumes:
+      - /home/iman/Documents/projects/docker training/docker-mysql/server3/custom.cnf:/etc/mysql/conf.d/custom.cnf
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    expose:
+      - 3306
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
